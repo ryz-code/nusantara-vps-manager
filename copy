@@ -11,6 +11,5 @@ cp /usr/bin/m-theme /root/bin/m-theme.sh
 cp /usr/bin/m-backup /root/bin/m-backup.sh
 cp /usr/bin/m-ip /root/bin/m-ip.sh
 cp /usr/bin/autoboot /root/bin/autoboot.sh
-cp /usr/bin/m-tor /root/bin/m-tor.sh
 cp /usr/bin/m-tcp /root/bin/m-tcp.sh
 cp /usr/bin/bot-tg /root/bin/bot-tg
