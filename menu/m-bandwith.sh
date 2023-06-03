@@ -82,5 +82,5 @@ echo -e "$COLOR1│${NC}               • RYZ STORE VPN •                 $CO
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
 echo -e ""
 read -n 1 -s -r -p "  Press any key to back on menu"
-menu-set
+m-set
 esac

@@ -65,10 +65,10 @@ echo -e "$COLOR1│${NC}               • RYZ STORE VPN •                 $CO
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
     echo ""
 read -n 1 -s -r -p "   Press any key to back on menu"
-    menu-tcp
+    m-tcp
   else
     echo ""
-    menu-tcp
+    m-tcp
   fi
 }
 
@@ -114,7 +114,7 @@ echo -e "$COLOR1│${NC}               • RYZ STORE VPN •                 $CO
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
     echo ""
 read -n 1 -s -r -p "   Press any key to back on menu"
-    menu-tcp
+    m-tcp
   fi
   check_kernel_version
   if [ $? -eq 0 ]; then
@@ -127,7 +127,7 @@ echo -e "$COLOR1│${NC}               • RYZ STORE VPN •                 $CO
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
     echo ""
 read -n 1 -s -r -p "   Press any key to back on menu"
-    menu-tcp
+    m-tcp
   fi
 
   if [[ x"${release}" == x"centos" ]]; then
@@ -138,7 +138,7 @@ echo -e "$COLOR1│${NC}               • RYZ STORE VPN •                 $CO
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
     echo ""
 read -n 1 -s -r -p "   Press any key to back on menu"
-    menu-tcp
+    m-tcp
   fi
 }
 
@@ -158,7 +158,7 @@ echo -e "$COLOR1│${NC}               • RYZ STORE VPN •                 $CO
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
     echo ""
 read -n 1 -s -r -p "   Press any key to back on menu"
-    menu-tcp
+    m-tcp
   fi
 }
 
@@ -186,10 +186,10 @@ echo -e "$COLOR1│${NC}               • RYZ STORE VPN •                 $CO
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
     echo ""
 read -n 1 -s -r -p "   Press any key to back on menu"
-    menu-tcp
+    m-tcp
   else
     echo ""
-    menu-tcp
+    m-tcp
   fi
 }
 
@@ -218,7 +218,7 @@ echo -e "$COLOR1│${NC}               • RYZ STORE VPN •                 $CO
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
     echo ""
 read -n 1 -s -r -p "   Press any key to back on menu"
-    menu-tcp
+    m-tcp
   else
 echo -e "$COLOR1│$NC Installation was canceled by the user!"
   fi
@@ -254,10 +254,10 @@ echo -e "$COLOR1│${NC}               • RYZ STORE VPN •                 $CO
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
     echo ""
 read -n 1 -s -r -p "   Press any key to back on menu"
-    menu-tcp
+    m-tcp
   else
     echo ""
-    menu-tcp
+    m-tcp
   fi
 }
 
@@ -292,7 +292,7 @@ echo -e "$COLOR1│${NC}               • RYZ STORE VPN •                 $CO
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
     echo ""
 read -n 1 -s -r -p "   Press any key to back on menu"
-    menu-tcp
+    m-tcp
   else
     
 echo -e "$COLOR1│$NC   Installation was canceled by the user!"
@@ -328,6 +328,6 @@ case $opt in
 04 | 4) clear ; delete_bbr ;;
 05 | 5) clear ; delete_Tweaker ;;
 06 | 6) clear ; delete_Tweaker_2 ;;
-00 | 0) clear ; menu-set ;;
-*) clear ; menu-tcp ;;
+00 | 0) clear ; m-set ;;
+*) clear ; m-tcp ;;
 esac

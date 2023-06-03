@@ -575,7 +575,6 @@ echo -e "$COLOR1└────────────────────�
 echo -e "$COLOR1┌────────────────────── BY ───────────────────────┐${NC}"
 echo -e "$COLOR1│${NC}               • RYZ STORE VPN •                 $COLOR1│"
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
-
 else
 
 echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
@@ -605,7 +604,7 @@ echo -e "$COLOR1└────────────────────�
 fi
 echo ""
 read -n 1 -s -r -p "   Press any key to back on menu"
-menu-ssh
+m-ssh
 }
 clear
 echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
@@ -634,7 +633,7 @@ case $opt in
 06 | 6) clear ; renewssh ;;
 07 | 7) clear ; memberssh ;;
 00 | 0) clear ; menu ;;
-*) clear ; menu-ssh ;;
+*) clear ; m-ssh ;;
 esac
 
        

@@ -90,7 +90,7 @@ case $opt in
 03 | 3) clear ; menu3 ;;
 04 | 4) clear ; menu4 ;;
 00 | 0) clear ; menu ;;
-*) clear ; menu-backup ;;
+*) clear ; m-backup ;;
 esac
 
        

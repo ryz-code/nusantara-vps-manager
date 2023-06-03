@@ -33,7 +33,7 @@ echo -e "$COLOR1│${NC}               • RYZ STORE VPN •                 $CO
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
 echo -e ""
 read -n 1 -s -r -p "   Press any key to back on menu"
-menu-dns 
+m-dns 
 else
 echo "$setdnss" > /root/dns
 echo -e "$COLOR1│${NC}  ${INFO} Copy DNS To Resolv.conf";
@@ -50,7 +50,7 @@ echo -e "$COLOR1│${NC}               • RYZ STORE VPN •                 $CO
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
 echo -e ""
 read -n 1 -s -r -p "   Press any key to back on menu"
-menu-dns 
+m-dns 
 }
 
 function resdns(){
@@ -82,7 +82,7 @@ echo -e "$COLOR1│${NC}               • RYZ STORE VPN •                 $CO
 echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
 echo -e ""
 read -n 1 -s -r -p "   Press any key to back on menu"
-menu-dns 
+m-dns 
 }
 
 clear
@@ -117,5 +117,5 @@ case $opt in
 05 | 5) clear ; useripvps ;;
 06 | 6) clear ; $ressee ;;
 00 | 0) clear ; menu ;;
-*) clear ; menu-dns ;;
+*) clear ; m-dns ;;
 esac

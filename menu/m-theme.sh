@@ -174,9 +174,9 @@ menu
 ;;
 *)
 clear
-menu-theme
+m-theme
 ;;
 esac
 echo -e ""
 read -n 1 -s -r -p "  Press any key to back on menu"
-menu-theme 
+m-theme 
