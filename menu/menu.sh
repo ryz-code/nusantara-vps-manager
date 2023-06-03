@@ -232,14 +232,14 @@ echo -e "$COLOR1└────────────────────�
 echo -e ""
 echo -ne " Select menu : "; read opt
 case $opt in
-01 | 1) clear ; menu-ssh ;;
-02 | 2) clear ; menu-vmess ;;
-03 | 3) clear ; menu-vless ;;
-04 | 4) clear ; menu-trojan ;;
-05 | 5) clear ; menu-ss ;;
-06 | 6) clear ; menu-dns ;;
-06 | 7) clear ; menu-theme ;;
-07 | 8) clear ; menu-backup ;;
+01 | 1) clear ; m-ssh ;;
+02 | 2) clear ; m-vmess ;;
+03 | 3) clear ; m-vless ;;
+04 | 4) clear ; m-trojan ;;
+05 | 5) clear ; m-ss ;;
+06 | 6) clear ; m-dns ;;
+06 | 7) clear ; m-theme ;;
+07 | 8) clear ; m-backup ;;
 09 | 9) clear ; add-host ;;
 10) clear ; crtxray ;;
 11) clear ; menu-set ;;
