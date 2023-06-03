@@ -2,7 +2,8 @@
 dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
 echo -e "[INFO] Remove Old Script"
-rm /usr/bin/menu
+rm -rf /usr/bin/menu
+
 sleep 2
 echo -e " [INFO] Downloading New Script"
 wget -qc -O /usr/bin/menu "https://raw.githubusercontent.com/ryz-code/nusantara-vps-manager/autoscript/menu/menu.sh" && chmod +x /usr/bin/menu
