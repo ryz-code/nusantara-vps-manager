@@ -1,104 +1,101 @@
 #!/bin/bash
-
 clear
-fun_bar() {
-    comando[0]="$1"
-    comando[1]="$2"
-    (
-        [[ -e $HOME/fim ]] && rm $HOME/fim
-        ${comando[0]} -y >/dev/null 2>&1
-        ${comando[1]} -y >/dev/null 2>&1
-        touch $HOME/fim
-    ) >/dev/null 2>&1 &
-    tput civis
-    echo -ne "\033[1;33m["
-    while true; do
-        for ((i = 0; i < 18; i++)); do
-            echo -ne "\033[1;31m#"
-            sleep 0.1s
-        done
-        [[ -e $HOME/fim ]] && rm $HOME/fim && break
-        echo -e "\033[1;33m]"
-        sleep 1s
-        tput cuu1
-        tput dl1
-        echo -ne "\033[1;33m["
-    done
-    echo -e "\033[1;33m]\033[1;37m -\033[1;32m OK !\033[1;37m"
-    tput cnorm
+ipes=$(curl -sS ipv4.icanhazip.com)
+
+
+[[ ! -f /usr/bin/jq ]] && {
+  red "Downloading jq file!"
+  wget -q --no-check-certificate "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64" -O /usr/bin/jq
+  chmod +x usr/bin/jq
+}
+
+dircreate() {
+  [[ ! -d /root/nusantara ]] && mkdir -p /root/nusantara && touch /root/nusantara/voucher && touch /root/nusantara/claimed && touch /root/nusantara/reseller && touch /root/nusantara/public && touch /root/nusantara/hist && echo "off" >/root/nusantara/public
+  [[ ! -d /etc/.maAsiss ]] && mkdir -p /etc/.maAsiss
 }
 
 fun_botOnOff() {
-    [[ $(ps x | grep "bot_plus" | grep -v grep | wc -l) = '0' ]] && {
-        clear
-        echo -e "\E[44;1;37mㅤNUSANTARA VPS MANAGERㅤTELE BOT INSTALLERㅤ\E[0m\n"
-        echo -ne "\033[1;32m◇ INFORM YOUR BOT TOKEN:\033[1;37m "
-        read tokenbot
-        echo ""
-        echo -ne "\033[1;32m◇ INFORM YOUR TELEGRAM ID:\033[1;37m "
-        read iduser
-        clear
-        echo -e "\033[1;32mㅤㅤNUSANTARA VPS MANAGERㅤTELE BOT STARTING...ㅤㅤ\033[0m\n"
-        fun_bot1() {
-        	[[ "$(grep -wc '16' /etc/issue.net)" != '0' ]] && {
-        		wget -qO- https://raw.githubusercontent.com/ryz-code/nusantara-vps-manager/main/Install/ShellBot.sh > /etc/VPSManager/ShellBot.sh
-        	}
-            [[ ! -e "/etc/VPSManager/ShellBot.sh" ]] && {
-				wget -qO- https://raw.githubusercontent.com/ryz-code/nusantara-vps-manager/main/Install/ShellBot.sh >/etc/VPSManager/ShellBot.sh
-			}
-            cd /etc/VPSManager
-            screen -dmS bot_plus ./bot $tokenbot $iduser >/dev/null 2>&1
-            [[ $(grep -wc "bot_plus" /etc/autostart) = '0' ]] && {
-                echo -e "ps x | grep 'bot_plus' | grep -v 'grep' || cd /etc/VPSManager && sudo screen -dmS bot_plus ./bot $tokenbot $iduser && cd $HOME" >>/etc/autostart
-            } || {
-                sed -i '/bot_plus/d' /etc/autostart
-                echo -e "ps x | grep 'bot_plus' | grep -v 'grep' || cd /etc/VPSManager && sudo screen -dmS bot_plus ./bot $tokenbot $iduser && cd $HOME" >>/etc/autostart
-            }
-            [[ $(crontab -l | grep -c "verifbot") = '0' ]] && (
-                crontab -l 2>/dev/null
-                echo "@daily /bin/verifbot"
-            ) | crontab -
-            cd $HOME
-        }
-        fun_bar 'fun_bot1'
-        [[ $(ps x | grep "bot_plus" | grep -v grep | wc -l) != '0' ]] && echo -e "\n\033[1;32m🐉ㅤDRAGON VPS MANAGERㅤTELE BOT ENABLED!ㅤ🐉\033[0m" || echo -e "\n\033[1;31m◇ MISTAKE! REANALYZE YOUR INFORMATION\033[0m"
-        sleep 2
-        menu
-    } || {
-        clear
-        echo -e "\033[1;32mㅤDRAGON VPS MANAGERㅤTELE BOT STOPPING...ㅤ🐉\033[0m\n"
-        fun_bot2() {
-            screen -r -S "bot_plus" -X quit
-            screen -wipe 1>/dev/null 2>/dev/null
-            [[ $(grep -wc "bot_plus" /etc/autostart) != '0' ]] && {
-                sed -i '/bot_plus/d' /etc/autostart
-            }
-            [[ $(crontab -l | grep -c "verifbot") != '0' ]] && crontab -l | grep -v 'verifbot' | crontab -
-            sleep 1
-        }
-        fun_bar 'fun_bot2'
-        echo -e "\n\033[1;32m \033[1;31m🐉ㅤDRAGON VPS MANAGERㅤTELE BOT STOPPED!ㅤ🐉\033[0m"
-        sleep 2
-        menu
+  dircreate
+  [[ ! -f /root/nusantara/bot.conf ]] && {
+    echo -e "Nusantara Bot Panel Installer
+        "
+    [[ ! -f /root/ResBotAuth ]] && {
+      echo -ne "Input your Bot TOKEN : "
+      read bot_tkn
+      echo "Toket: $bot_tkn" >/root/ResBotAuth
+      echo -ne "Input your Admin ID : "
+      read adm_ids
+      echo "Admin_ID: $adm_ids" >>/root/ResBotAuth
     }
+    echo -ne "Bot Username, Dont use '@' [Ex: NusantaraStore_bot] : "
+    read bot_user
+    [[ -z $bot_user ]] && bot_user="NusantaraStore_bot"
+    echo ""
+    echo -ne "Limit Free Config [default:1] : "
+    read limit_pnl
+    [[ -z $limit_pnl ]] && limit_pnl="1"
+    echo ""
+    cat <<-EOF >/root/nusantara/bot.conf
+Botname: $bot_user
+Limit: $limit_pnl
+EOF
+    clear
+    echo -e "Info...\n"
+    fun_bot1() {
+      [[ ! -e "/etc/.maAsiss/.Shellbtsss" ]] && {
+        wget -qO- https://raw.githubusercontent.com/ryz-code/nusantara-vps-manager/autoscript/bot/bot-api.sh >/etc/.maAsiss/.Shellbtsss
+      }
+      [[ "$(grep -wc "sam_bot" "/etc/rc.local")" = '0' ]] && {
+        sed -i '$ i\screen -dmS sam_bot bbt' /etc/rc.local >/dev/null 2>&1
+      }
+    }
+    screen -dmS sam_bot bbt >/dev/null 2>&1
+    fun_bot1
+    [[ $(ps x | grep "sam_bot" | grep -v grep | wc -l) != '0' ]] && echo -e "\nBot successfully activated !" || echo -e "\nError1! Information not valid !"
+    sleep 2
+    menu
+  } || {
+    clear
+    echo -e "Info...\n"
+    fun_bot2() {
+      screen -r -S "sam_bot" -X quit >/dev/null 2>&1
+      [[ $(grep -wc "sam_bot" /etc/rc.local) != '0' ]] && {
+        sed -i '/sam_bot/d' /etc/rc.local
+      }
+      rm -f /root/nusantara/bot.conf
+      sleep 1
+    }
+    fun_bot2
+    echo -e "\nBot Scvps Stopped!"
+    sleep 2
+    menu
+  }
 }
 
 fun_instbot() {
-    echo -e "\E[44;1;37mㅤ🐉ㅤDRAGON VPS MANAGERㅤTELE BOT INSTALLERㅤ🐉ㅤ\E[0m\n"
-    echo -e "                 \033[1;33m[\033[1;31m!\033[1;33m] \033[1;31mATTENTION! \033[1;33m[\033[1;31m!\033[1;33m]\033[0m"
-    echo -e "\n\033[1;32m1° \033[1;37m- \033[1;33mTHROUGH YOUR TELEGRAM ACCOUNT, ACCESS THE FOLLOWING BOT\033[1;37m:\033[0m"
-    echo -e "\n\033[1;32m2° \033[1;37m- \033[1;33mBOT \033[1;37m@BotFather \033[1;33mCREATE YOUR BOT \033[1;31mSEND TO @Botfather: \033[1;37m/newbot\033[0m"
-    echo -e "\n\033[1;32m3° \033[1;37m- \033[1;33mBOT \033[1;37m@TwincyBot \033[1;33mAND GET YOUR ID \033[1;31mSEND TO @TwincyBot: \033[1;37m/id\033[0m"
-    echo -e "\033[0;34m◇────────────────────────────────────────────────◇\033[1;32m"
-    echo ""
-    read -p "◇ DO YOU WISH TO CONTINUE ? [s/n]: " -e -i s resposta
-    [[ "$resposta" = 's' ]] && {
-        fun_botOnOff
-    } || {
-        echo -e "\n\033[1;31m◇ Returning...\033[0m"
-        sleep 2
-        menu
-    }
+  echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  echo -e "         ⚠️ ATTENTION ⚠️"
+  echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  echo -e " • Go to @BotFather Create Your own Bot by Type : /newbot"
+  echo -e " • Go to @MissRose_bot And Get Your ID by Type : /id"
+  echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  echo -e "Note:
+
+    y = to start bot panel
+    n = to cancel start bot panel
+    d = delete configuration file before
+    "
+  echo -ne "Do you want to continue ? [y/n/d]: "
+  read resposta
+  if [[ "$resposta" = 'd' ]]; then
+    rm -f /root/nusantara/bot.conf
+    menu
+  elif [[ "$resposta" = 'y' ]] || [[ "$resposta" = 'Y' ]]; then
+    fun_botOnOff
+  else
+    echo -e "Returning..."
+    sleep 1
+    menu
+  fi
 }
-[[ -f "/etc/VPSManager/ShellBot.sh" ]] && fun_botOnOff || fun_instbot
-#fim
+[[ -f "/etc/.maAsiss/.Shellbtsss" ]] && fun_botOnOff || fun_instbot
