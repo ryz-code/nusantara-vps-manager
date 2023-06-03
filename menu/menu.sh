@@ -190,7 +190,7 @@ echo -e "  ${COLOR1}[06]${NC} • SET DNS [${YELLOW}Menu${NC}]   ${COLOR1}[12]${
 if [ "$Isadmin" = "ON" ]; then
 echo -e "                                                  $COLOR1│$NC"
 echo -e "  ${COLOR1}[13]${NC} • REG IP  [${YELLOW}Menu${NC}]   ${COLOR1}[14]${NC} • SET BOT  [${YELLOW}Menu${NC}]  $COLOR1│$NC"
-ressee="menu-ip"
+ressee="m-ip"
 bottt="m-bot"
 else
 ressee="menu"
@@ -242,7 +242,7 @@ case $opt in
 07 | 8) clear ; m-backup ;;
 09 | 9) clear ; add-host ;;
 10) clear ; crtxray ;;
-11) clear ; menu-set ;;
+11) clear ; m-set ;;
 12) clear ; info ;;
 13) clear ; $ressee ;;
 14) clear ; $bottt ;;
