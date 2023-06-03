@@ -42,7 +42,7 @@ wget -q -O /usr/bin/m-dns "https://raw.githubusercontent.com/ryz-code/nusantara-
 wget -q -O /usr/bin/info "https://raw.githubusercontent.com/ryz-code/nusantara-vps-manager/autoscript/addon/info.sh" && chmod +x /usr/bin/info
 wget -q -O /usr/bin/m-speed "https://raw.githubusercontent.com/ryz-code/nusantara-vps-manager/autoscript/menu/m-speedtest.sh" && chmod +x /usr/bin/m-speed
 wget -q -O /usr/bin/m-bandwith "https://raw.githubusercontent.com/ryz-code/nusantara-vps-manager/autoscript/menu/m-bandwith.sh" && chmod +x /usr/bin/m-bandwith
-wget -qc -o /opt/.ver "https:https://raw.githubusercontent.com/ryz-code/nusantara-vps-manager/autoscript/update/version_up && chmod +x /opt/.ver
+wget -qc -o /opt/.ver "https:https://raw.githubusercontent.com/ryz-code/nusantara-vps-manager/autoscript/update/version_up" && chmod +x /opt/.ver
 echo -e " [INFO] Update Successfully"
 
 rm install_up.sh
